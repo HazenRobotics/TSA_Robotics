@@ -50,6 +50,9 @@ public class Wrist {
     public void initPos(){
         wrist.setPosition(0.5);
     }
+    public void initPos(){
+        wrist.setPosition(0.5);
+    }
 
     @SuppressLint("DefaultLocale")
     public String toString(){
