@@ -47,6 +47,9 @@ public class Wrist {
         position = 0.7;
         wrist.setPosition(0.7);
     }
+    public void initPos(){
+        wrist.setPosition(0.5);
+    }
 
     @SuppressLint("DefaultLocale")
     public String toString(){
