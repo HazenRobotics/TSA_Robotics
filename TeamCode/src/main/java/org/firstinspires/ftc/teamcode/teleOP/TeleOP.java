@@ -41,7 +41,7 @@ public class TeleOP extends LinearOpMode {
                 robot.toggleClaw();
             }
             //x Button && right bumper
-            if( controller1.right_bumper.onPress())
+            if( controller1.y.onPress())
             {
                 robot.ringClaw();
             }
@@ -84,8 +84,20 @@ public class TeleOP extends LinearOpMode {
             controller2.update();
 
             robot.updatePos();
+            telemetry.addLine("CONTROLLER 1:");
+            telemetry.addLine("Press [A] to toggle Intake");
+            telemetry.addLine("Press [B] to reset states");
+            telemetry.addLine("Press [X] to toggle Claw");
+            telemetry.addLine("Press [Y] to press RING Claw");
+            telemetry.addLine("Press [Left_Bumper] to toggle Hockey Stick");
+            telemetry.addLine("Hold [Triggers] to extend Horizontal Rxtendo");
+            telemetry.addLine("Drive: [Left Joystick Y], Strafe: [Left Joystick X], Rotate: [Right Joystick x]");
+            telemetry.addLine("\n CONTROLLER 2:");
+            telemetry.addLine("Press [DPAD_LEFT] to Adjust Hockey Stick to Postive #");
+            telemetry.addLine("Press [DPAD_RIGHT] to Adjust Hockey Stick to Negative #");
+            telemetry.addLine("Press [DPAD_UP] to Adjust PIVOT to Postive #");
+            telemetry.addLine("Press [DPAD_DOWN] to Adjust PIVOT to Negative #");
 
-            telemetry.addLine("OPMODE ACTIVE");
             telemetry.addLine(robot.toString());
             telemetry.update();
         }
