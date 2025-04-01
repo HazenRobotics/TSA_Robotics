@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class HorizontalExtendo {
     DcMotorEx leftMotor, rightMotor;
-
     private final double multipleConstant = 1000;
     private final double motorSpeed = 0.7;
 
@@ -20,9 +19,8 @@ public class HorizontalExtendo {
 
         rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-
-        leftMotor.setTargetPosition(leftMotor.getCurrentPosition());
-        rightMotor.setTargetPosition(leftMotor.getCurrentPosition());
+        leftMotor.setTargetPosition(getPos());
+        rightMotor.setTargetPosition(getPos());
 
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -31,21 +29,17 @@ public class HorizontalExtendo {
         rightMotor.setPower(motorSpeed);
     }
 
-    public void move(double val)
-    {
-        leftMotor.setPower(val);
-        rightMotor.setPower(val);
-    }
 
     public void movePos(double val)
     {
-        val *= multipleConstant;
+        if(Math.abs(val) > 0.1)
+        {
+            val *= multipleConstant;
+            int pos = leftMotor.getCurrentPosition() + (int) val;
 
-        int pos = leftMotor.getCurrentPosition() + (int) val;
-
-        leftMotor.setTargetPosition(pos);
-        rightMotor.setTargetPosition(pos);
-
+            leftMotor.setTargetPosition(pos);
+            rightMotor.setTargetPosition(pos);
+        }
 
     }
 
