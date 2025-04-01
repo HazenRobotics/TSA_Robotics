@@ -32,7 +32,7 @@ public class HorizontalExtendo {
 
     public void movePos(double val)
     {
-        if(val > 0.3)
+        if(Math.abs(val) > 0.1)
         {
             val *= multipleConstant;
             int pos = leftMotor.getCurrentPosition() + (int) val;
