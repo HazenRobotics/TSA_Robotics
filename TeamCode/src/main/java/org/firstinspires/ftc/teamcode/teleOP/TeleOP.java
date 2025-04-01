@@ -1,10 +1,15 @@
 package org.firstinspires.ftc.teamcode.teleOP;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
+import org.firstinspires.ftc.vision.VisionPortal;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvWebcam;
 
 @TeleOp(name = "A GOATED TeleOP")
 public class TeleOP extends LinearOpMode {
@@ -18,38 +23,71 @@ public class TeleOP extends LinearOpMode {
         controller1 = new GamepadEvents(gamepad1);
         controller2 = new GamepadEvents(gamepad2);
 
-        waitForStart();
         robot.initializeStates();
+
+        // Get the webcam from the hardware map
+        final FtcDashboard_Camera.CameraStreamProcessor processor = new FtcDashboard_Camera.CameraStreamProcessor();
+
+        new VisionPortal.Builder().
+                addProcessor(processor)
+                .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
+                .build();
+
+        FtcDashboard.getInstance().startCameraStream(processor, 20);
+
+        waitForStart();
+
 
         while(opModeIsActive())
         {
             robot.drive(-controller1.left_stick_y, controller1.left_stick_x, controller1.right_stick_x);
-            robot.extend((controller1.left_trigger.getTriggerValue() - controller1.right_trigger.getTriggerValue())* 100);
+            robot.extend((controller1.left_trigger.getTriggerValue() - controller1.right_trigger.getTriggerValue()));
             //a Button
-            if(controller1.a.onPress())
+            if(controller1.x.onPress())
             {
                 robot.intakeToggle();
             }
             //b button
-            if(controller1.b.onPress())
+            if(controller1.y.onPress())
             {
-                robot.resetStates();
+//                robot.resetStates();
+                robot.openClaw();
             }
             //x Button
-            if(controller1.x.onPress())
+            if(controller1.b.onPress())
             {
-                robot.toggleClaw();
-            }
-            //x Button && right bumper
-            if( controller1.y.onPress())
-            {
+//                robot.toggleClaw();
                 robot.ringClaw();
             }
-
-            if(controller1.left_bumper.onPress())
+            //x Button && right bumper
+            if( controller1.a.onPress())
             {
-                robot.toggleHockeyStick();
+//                robot.ringClaw();
+                robot.closeClaw();
             }
+
+
+            if(controller1.left_bumper.getValue())
+            {
+                robot.adjustArmOffset(1);
+//                robot.toggleHockeyStick();
+            }
+            if(controller1.right_bumper.getValue()){
+                robot.adjustArmOffset(-1);
+            }
+
+            if(controller1.dpad_up.onPress()){
+                robot.setHockeyStickUp();
+            }
+            if(controller1.dpad_down.onPress()){
+                robot.setHockeyStickDown();
+            }
+            if(controller1.dpad_right.onPress()){
+                robot.setHockeyStickReset();
+            }
+
+
+
 
             // CONTROLLER 2
 
@@ -74,7 +112,7 @@ public class TeleOP extends LinearOpMode {
 
 
 
-            robot.adjustArmOffset(-controller2.left_stick_y);
+//            robot.adjustArmOffset(-controller2.left_stick_y);
 
 
 
@@ -85,12 +123,13 @@ public class TeleOP extends LinearOpMode {
 
             robot.updatePos();
             telemetry.addLine("CONTROLLER 1:");
-            telemetry.addLine("Press [A] to toggle Intake");
-            telemetry.addLine("Press [B] to reset states");
-            telemetry.addLine("Press [X] to toggle Claw");
-            telemetry.addLine("Press [Y] to press RING Claw");
-            telemetry.addLine("Press [Left_Bumper] to toggle Hockey Stick");
-            telemetry.addLine("Hold [Triggers] to extend Horizontal Rxtendo");
+            telemetry.addLine("Press [A] to Close Claw");
+            telemetry.addLine("Press [B] to Close Claw on Ring");
+            telemetry.addLine("Press [X] to toggle Parallel/Perpendicular Intake");
+            telemetry.addLine("Press [Y] to Open Claw");
+            telemetry.addLine("Press [Left_Bumper] to Lower Arm");
+            telemetry.addLine("Press [Right_Bumper] to Raise Arm");
+            telemetry.addLine("Hold [Triggers] to extend Horizontal Extendo");
             telemetry.addLine("Drive: [Left Joystick Y], Strafe: [Left Joystick X], Rotate: [Right Joystick x]");
             telemetry.addLine("\n CONTROLLER 2:");
             telemetry.addLine("Press [DPAD_LEFT] to Adjust Hockey Stick to Postive #");

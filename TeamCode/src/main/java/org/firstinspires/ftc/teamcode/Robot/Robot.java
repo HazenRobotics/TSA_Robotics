@@ -39,8 +39,8 @@ public class Robot {
     public void initializeStates() throws InterruptedException {
         claw.close();
         automaticPivot.init();
-        Thread.sleep(1000);
-        claw.open();
+//        Thread.sleep(1000);
+//        claw.open();
     }
 
     public void resetStates()
@@ -60,6 +60,14 @@ public class Robot {
         claw.toggle();
     }
 
+    public void openClaw(){
+        claw.open();
+    }
+
+    public void closeClaw(){
+        claw.close();
+    }
+
     public void ringClaw()
     {
         claw.ringClose();
@@ -72,12 +80,21 @@ public class Robot {
 
     public void extend(double val)
     {
-        horizontalExtendo.movePos(val);
+        horizontalExtendo.movePos(val );
     }
 
     public void toggleHockeyStick()
     {
         hockeyStick.toggle();
+    }
+    public void setHockeyStickReset(){
+        hockeyStick.reset();
+    }
+    public void setHockeyStickUp(){
+        hockeyStick.setUP();
+    }
+    public void setHockeyStickDown(){
+        hockeyStick.setDown();
     }
 
     public void adjustPivotOffset(int pivotAdjustment)
@@ -104,7 +121,7 @@ public class Robot {
     {
         return "Claw Pos: " + claw.getPos()
                 + "\n" + automaticPivot.toString()
-                + "\nHorizontal Extendo Pos: " + horizontalExtendo.getPos()
+                + "\nHorizontal Extendo Data: " + horizontalExtendo.toString()
                 + "\nHockey Stick Pos: " + hockeyStick.getPosition();
     }
 

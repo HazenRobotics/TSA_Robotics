@@ -13,6 +13,8 @@ public class Wrist {
     private double MAX = 0.7;
     private double MIN = 0;
 
+    public static double PARALLEL = 0.2;
+
     public Wrist(HardwareMap hw, String wristName){
         wrist = hw.get(Servo.class,wristName);
     }

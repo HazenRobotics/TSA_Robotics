@@ -19,7 +19,7 @@ public class ExtendoTest extends LinearOpMode {
         while (opModeIsActive())
         {
             double pos = controller1.left_trigger.getTriggerValue() - controller1.right_trigger.getTriggerValue();
-            extendo.move(pos);
+            extendo.movePos(pos);
             telemetry.addData("Exendo Pos", pos);
             controller1.update();
         }

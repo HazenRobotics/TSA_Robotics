@@ -15,8 +15,8 @@ public class AutomaticPivot {
 
     //Assuming position change of 0.25 = 90 degrees
     //0.74
-    public static double PARALLEL_OFFSET = 0.05;
-    public static double PERPENDICULAR_OFFSET = PARALLEL_OFFSET - 0.63;
+    public static double PARALLEL_OFFSET = 0;//0.05;
+    public static double PERPENDICULAR_OFFSET = -0.25;//PARALLEL_OFFSET - 0.63;
 
     public boolean isParallel = true;
 
@@ -43,8 +43,8 @@ public class AutomaticPivot {
      * Subject to change in the future.
      */
     public void init(){
-        arm.setParallel();
-        wrist.setPosition(0.5 - PARALLEL_OFFSET);
+        arm.setPosition(0.86);
+        wrist.setPosition(0.5);
 
     }
 
@@ -76,17 +76,17 @@ public class AutomaticPivot {
      */
     public void updatePos(){
         //Getting the initial states of the robot and arm
-        double pitch = imu.getRobotYawPitchRollAngles().getPitch(AngleUnit.DEGREES);
+        double pitch = imu.getRobotYawPitchRollAngles().getPitch(AngleUnit.DEGREES)/90.0;
         double armPos = arm.getPosition();
 
         //Maintain parallel Claw
         if(isParallel){
-            wrist.setPosition(0.5 + (-pitch * 0.25) + (0.5-armPos) + PARALLEL_OFFSET);
+            wrist.setPosition(Wrist.PARALLEL + (-pitch * 0.25) + (armPos-0.5)*0.8 + PARALLEL_OFFSET);
 
         }
         //Maintain perpendicular Claw
         else{
-            wrist.setPosition(0.5 + (-pitch * 0.25) + (0.5-armPos) + PERPENDICULAR_OFFSET);
+            wrist.setPosition(Wrist.PARALLEL + (-pitch * 0.25) + (armPos-0.5)*0.8 + PERPENDICULAR_OFFSET);
         }
     }
 
@@ -95,7 +95,7 @@ public class AutomaticPivot {
      * @param increment Used for [Trigger] Inputs to move the arm pivot
      */
     public void adjustArm(double increment){
-        arm.adjustPosition(increment);
+        arm.adjustPosition(increment*5);
     }
 
     /**
@@ -104,9 +104,9 @@ public class AutomaticPivot {
      */
     public void adjustOffset(double increment){
         if(isParallel){
-            PARALLEL_OFFSET = Math.max(Math.min( PARALLEL_OFFSET + 0.001 *increment, 1) ,0);
+            PARALLEL_OFFSET = PARALLEL_OFFSET + 0.001 *increment;
         }else{
-            PERPENDICULAR_OFFSET = Math.max(Math.min( PERPENDICULAR_OFFSET + 0.001 *increment, 1) ,0);
+            PERPENDICULAR_OFFSET = PERPENDICULAR_OFFSET + 0.001 *increment;
         }
     }
     public void setPos(int pos)

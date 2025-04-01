@@ -12,6 +12,8 @@ public class Arm {
     private double SPEED_MULI = 0.001;
     private double MAX = 1;
     private double MIN = 0;
+
+    public static double PARALLEL = 0.5;
     public Arm(HardwareMap hardwareMap, String frontArmName, String backArmName)
     {
         backArm = hardwareMap.get(Servo.class, backArmName);
@@ -20,9 +22,10 @@ public class Arm {
 
     }
     public void setPosition(double pos){
-        double liftPosition = 0.5;
-        backArm.setPosition(liftPosition + pos);
-        frontArm.setPosition(liftPosition + pos);
+//        double liftPosition = 0.5;
+        position = pos;
+        backArm.setPosition( position);
+        frontArm.setPosition(position);
     }
     public double getFrontArm(){
         return frontArm.getPosition();
