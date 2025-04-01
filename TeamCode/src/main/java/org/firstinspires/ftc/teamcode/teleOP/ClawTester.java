@@ -15,19 +15,27 @@ public class ClawTester extends LinearOpMode {
         GamepadEvents controller = new GamepadEvents(gamepad1);
 
         waitForStart();
+//        claw.setPosition(0.7);
         while(opModeIsActive())
         {
-            if(controller.x.onPress())
-            {
-                claw.close();
-            }else if(controller.y.onPress()){
-                claw.open();
-            }else if(controller.b.onPress()){
-                claw.ringClose();
-            }
+            //set zero as open
+
+//            claw.setPosition(0);
+//            if(controller.b.onPress())
+//            {
+//                claw.toggle();
+//            }
+//
+////
+//            if(controller.b.onPress() && controller.left_bumper.onPress())
+//            {
+//                claw.ringClose();
+//            }
             claw.adjustPosition(controller.left_stick_y);
 
             telemetry.addData("Expected Claw Pos", claw.getPos());
+            telemetry.addLine("Resetting to Zero");
+            telemetry.addLine("PRESS[B] to open claw");
             telemetry.update();
             controller.update();
         }

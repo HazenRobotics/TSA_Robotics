@@ -15,8 +15,8 @@ public class AutomaticPivot {
 
     //Assuming position change of 0.25 = 90 degrees
     //0.74
-    public static double PARALLEL_OFFSET = 0.25;
-    public static double PERPENDICULAR_OFFSET = PARALLEL_OFFSET - 0.3;
+    public static double PARALLEL_OFFSET = 0.05;
+    public static double PERPENDICULAR_OFFSET = PARALLEL_OFFSET - 0.63;
 
     public boolean isParallel = true;
 
@@ -104,9 +104,9 @@ public class AutomaticPivot {
      */
     public void adjustOffset(double increment){
         if(isParallel){
-            PARALLEL_OFFSET = Math.max(Math.min( PARALLEL_OFFSET + 0.0005 *increment, 1) ,0);
+            PARALLEL_OFFSET = Math.max(Math.min( PARALLEL_OFFSET + 0.001 *increment, 1) ,0);
         }else{
-            PERPENDICULAR_OFFSET = Math.max(Math.min( PERPENDICULAR_OFFSET + 0.0005 *increment, 1) ,0);
+            PERPENDICULAR_OFFSET = Math.max(Math.min( PERPENDICULAR_OFFSET + 0.001 *increment, 1) ,0);
         }
     }
     public void setPos(int pos)

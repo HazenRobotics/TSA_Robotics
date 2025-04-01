@@ -18,21 +18,6 @@ public class TeleOP extends LinearOpMode {
         controller1 = new GamepadEvents(gamepad1);
         controller2 = new GamepadEvents(gamepad2);
 
-        controlBinding1 = new GamepadEvents.GamepadButton[]
-                {
-                        controller1.a,
-                        controller1.b,
-                        controller1.x,
-                        controller1.right_bumper,
-                        controller1.left_bumper
-
-                };
-        controlBinding2 = new GamepadEvents.GamepadButton[]
-                {
-                        controller2.dpad_up,
-                        controller2.dpad_down,
-
-                };
         waitForStart();
         robot.initializeStates();
 
@@ -41,42 +26,59 @@ public class TeleOP extends LinearOpMode {
             robot.drive(-controller1.left_stick_y, controller1.left_stick_x, controller1.right_stick_x);
             robot.extend((controller1.left_trigger.getTriggerValue() - controller1.right_trigger.getTriggerValue())* 100);
             //a Button
-            if(controlBinding1[0].onPress())
+            if(controller1.a.onPress())
             {
                 robot.intakeToggle();
             }
-            if(controlBinding1[1].onPress())
+            //b button
+            if(controller1.b.onPress())
             {
                 robot.resetStates();
             }
             //x Button
-            if(controlBinding1[2].onPress())
+            if(controller1.x.onPress())
             {
                 robot.toggleClaw();
             }
             //x Button && right bumper
-            if(controlBinding1[2].onPress() && controlBinding1[3].onPress())
+            if( controller1.right_bumper.onPress())
             {
                 robot.ringClaw();
             }
-            //Left Bumper. Commented out because hockey stick hasn't been tested out yet due to a
-            // set screw being loose
-//            if(controlBinding1[3].onPress())
-//            {
-//                robot.toggleHockeyStick();
-//            }
 
-            if(controlBinding2[0].onPress())
+            if(controller1.left_bumper.onPress())
             {
-                robot.adjustPivotOffset(1);
-            }
-            if(controlBinding2[1].onPress())
-            {
-                robot.adjustPivotOffset(-1);
+                robot.toggleHockeyStick();
             }
 
-            robot.adjustHockeyOffset(-controller2.left_stick_y);
+            // CONTROLLER 2
 
+            if(controller2.dpad_left.onPress())
+            {
+                robot.adjustHockeyOffset(1);
+            }
+            if(controller2.dpad_right.onPress())
+            {
+                robot.adjustHockeyOffset(-1);
+            }
+
+
+            if(controller2.dpad_up.onPress())
+            {
+                robot.adjustPivotOffset(5);
+            }
+            if(controller2.dpad_down.onPress())
+            {
+                robot.adjustPivotOffset(-5);
+            }
+
+
+
+            robot.adjustArmOffset(-controller2.left_stick_y);
+
+
+
+//            robot.adjustClawOffset(-controller2.right_stick_y);
 
             controller1.update();
             controller2.update();
@@ -84,6 +86,7 @@ public class TeleOP extends LinearOpMode {
             robot.updatePos();
 
             telemetry.addLine("OPMODE ACTIVE");
+            telemetry.addLine(robot.toString());
             telemetry.update();
         }
     }

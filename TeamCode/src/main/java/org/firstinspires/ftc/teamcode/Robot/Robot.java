@@ -23,12 +23,12 @@ public class Robot {
     ScoringType currentState;
     public Robot(HardwareMap hw)
     {
-        this.driveTrain = new DriveTrain(hw,"frontLeft", "backLeft", "frontRight",
+        driveTrain = new DriveTrain(hw,"frontLeft", "backLeft", "frontRight",
                 "backRight");
-        this.claw = new Claw(hw,"Claw");
-        this.hockeyStick =  new HockeyStick(hw, "hockeyStick");
-        this.horizontalExtendo = new HorizontalExtendo(hw, "leftExtendo", "rightExtendo");
-        this.automaticPivot =  new AutomaticPivot(hw);
+        claw = new Claw(hw,"Claw");
+        hockeyStick =  new HockeyStick(hw, "hockeyStick");
+        horizontalExtendo = new HorizontalExtendo(hw, "leftExtendo", "rightExtendo");
+        automaticPivot =  new AutomaticPivot(hw);
         currentState = ScoringType.Parallel;
     }
 
@@ -36,9 +36,10 @@ public class Robot {
     {
         driveTrain.drive(forward, strafe, rotate);
     }
-    public void initializeStates()
-    {
+    public void initializeStates() throws InterruptedException {
+        claw.close();
         automaticPivot.init();
+        Thread.sleep(1000);
         claw.open();
     }
 
@@ -84,9 +85,27 @@ public class Robot {
        automaticPivot.adjustOffset(pivotAdjustment);
     }
 
-    public void adjustHockeyOffset(double hockeyOffset)
+    public void adjustHockeyOffset(int hockeyOffset)
     {
         hockeyStick.adjustPos(hockeyOffset);
+    }
+
+    public void adjustClawOffset(double clawOffset)
+    {
+        claw.adjustPosition(clawOffset);
+    }
+
+    public void adjustArmOffset(double armOffset)
+    {
+        automaticPivot.adjustArm(armOffset);
+    }
+
+    public String toString()
+    {
+        return "Claw Pos: " + claw.getPos()
+                + "\n" + automaticPivot.toString()
+                + "\nHorizontal Extendo Pos: " + horizontalExtendo.getPos()
+                + "\nHockey Stick Pos: " + hockeyStick.getPosition();
     }
 
 
