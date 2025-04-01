@@ -20,13 +20,18 @@ public class Claw {
     public void open()
     {
         position=open;
-//        claw.setPosition(open);
+        claw.setPosition(position);
     }
 
     public void close()
     {
         position=close;
-//        claw.setPosition(close);
+        claw.setPosition(position);
+    }
+
+    public void setPosition(double pos)
+    {
+        claw.setPosition(pos);
     }
 
     public void toggle()
@@ -44,7 +49,8 @@ public class Claw {
         position=ring;
 //        claw.setPosition(ring);
     }
-    public void adjustPosition(double increment){
+    public void adjustPosition(double increment)
+    {
         position += increment*0.0001;
         claw.setPosition(position);
     }

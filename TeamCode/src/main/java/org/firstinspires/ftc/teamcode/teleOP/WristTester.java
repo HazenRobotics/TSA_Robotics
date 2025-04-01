@@ -19,6 +19,7 @@ public class WristTester extends LinearOpMode {
         wrist.initPos();
         while(opModeIsActive())
         {
+
             if(controller1.b.onPress())
             {
 

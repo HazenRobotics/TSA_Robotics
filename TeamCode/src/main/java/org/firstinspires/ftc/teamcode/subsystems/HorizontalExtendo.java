@@ -17,23 +17,19 @@ public class HorizontalExtendo {
     {
         leftMotor = hardwareMap.get(DcMotorEx.class, leftMotorName);
         rightMotor = hardwareMap.get(DcMotorEx.class, rightMotorName);
-        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-    }
 
-//    public HorizontalExtendo(String leftMotorName, String rightMotorName)
-//    {
-//        leftMotor = hardwareMap.get(DcMotorEx.class, leftMotorName);
-//        rightMotor = hardwareMap.get(DcMotorEx.class, rightMotorName);
-//
-//        leftMotor.setTargetPosition(leftMotor.getCurrentPosition());
-//        rightMotor.setTargetPosition(leftMotor.getCurrentPosition());
-//
-//        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//
-//        leftMotor.setPower(motorSpeed);
-//        rightMotor.setPower(motorSpeed);
-//    }
+        rightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+        leftMotor.setTargetPosition(leftMotor.getCurrentPosition());
+        rightMotor.setTargetPosition(leftMotor.getCurrentPosition());
+
+        leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        leftMotor.setPower(motorSpeed);
+        rightMotor.setPower(motorSpeed);
+    }
 
     public void move(double val)
     {

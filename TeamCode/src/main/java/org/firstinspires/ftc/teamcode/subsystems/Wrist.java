@@ -29,7 +29,7 @@ public class Wrist {
 
     //Not the actual parallel position by the way!
     public void setParallel(){
-        position = 0;
+        position = 0.2;
         wrist.setPosition(position);
     }
     public void setPerpendicular(){
@@ -42,7 +42,8 @@ public class Wrist {
         wrist.setPosition(position);
     }
     public void initPos(){
-        wrist.setPosition(0.5);
+        position = 0.7;
+        wrist.setPosition(0.7);
     }
 
     @SuppressLint("DefaultLocale")
