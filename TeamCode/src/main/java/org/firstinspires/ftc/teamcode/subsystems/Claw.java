@@ -47,11 +47,11 @@ public class Claw {
     public void ringClose()
     {
         position=ring;
-//        claw.setPosition(ring);
+        claw.setPosition(ring);
     }
     public void adjustPosition(double increment)
     {
-        position += increment*0.0001;
+        position += increment*0.005;
         claw.setPosition(position);
     }
 }

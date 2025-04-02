@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.teleOP;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -19,24 +20,25 @@ public class TeleOP extends LinearOpMode {
     public static GamepadEvents.GamepadButton controlBinding2[];
     @Override
     public void runOpMode() throws InterruptedException {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         robot = new Robot(hardwareMap);
         controller1 = new GamepadEvents(gamepad1);
         controller2 = new GamepadEvents(gamepad2);
 
-        robot.initializeStates();
+
 
         // Get the webcam from the hardware map
         final FtcDashboard_Camera.CameraStreamProcessor processor = new FtcDashboard_Camera.CameraStreamProcessor();
 
-        new VisionPortal.Builder().
-                addProcessor(processor)
+        new VisionPortal.Builder()
+                .addProcessor(processor)
                 .setCamera(hardwareMap.get(WebcamName.class, "Webcam 1"))
                 .build();
 
         FtcDashboard.getInstance().startCameraStream(processor, 20);
 
         waitForStart();
-
+        robot.initializeStates();
 
         while(opModeIsActive())
         {
@@ -91,23 +93,30 @@ public class TeleOP extends LinearOpMode {
 
             // CONTROLLER 2
 
-            if(controller2.dpad_left.onPress())
+            if(controller2.left_bumper.getValue())
             {
                 robot.adjustHockeyOffset(1);
             }
-            if(controller2.dpad_right.onPress())
+            if(controller2.right_bumper.getValue())
             {
                 robot.adjustHockeyOffset(-1);
             }
 
 
-            if(controller2.dpad_up.onPress())
+            if(controller2.dpad_up.getValue())
             {
                 robot.adjustPivotOffset(5);
             }
-            if(controller2.dpad_down.onPress())
+            if(controller2.dpad_down.getValue())
             {
                 robot.adjustPivotOffset(-5);
+            }
+
+            if(controller2.dpad_left.getValue()){
+                robot.adjustClawOffset(1);
+            }
+            if(controller2.dpad_right.getValue()){
+                robot.adjustClawOffset(-1);
             }
 
 

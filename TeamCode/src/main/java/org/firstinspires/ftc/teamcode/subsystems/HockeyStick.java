@@ -13,8 +13,15 @@ public class HockeyStick
     private int RESET = 0;
     private int multipler = 25;
 
-    private double parallel;
-    private double hover;
+    public int targetPosition = 0;
+
+    enum State{
+        TOP,
+        BOTTOM,
+        RESET
+    }
+    State currentState = State.RESET;
+
     private DcMotorEx hockeyStick;
     public HockeyStick(HardwareMap hardwareMap, String motorName)
     {
@@ -26,7 +33,7 @@ public class HockeyStick
         hockeyStick.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         hockeyStick.setPower(0.7);
 
-
+        currentState = State.RESET;
     }
 
 
@@ -44,31 +51,41 @@ public class HockeyStick
 
     public void adjustPos(int val)
     {
-        val *= multipler;
-        TOP += val;
-        BOTTOM += val;
-        setPosition(getPosition() + val);
+        targetPosition += val * multipler;
+        if (currentState == State.TOP){
+            TOP = targetPosition;
+        }
+        else if( currentState == State.BOTTOM){
+            BOTTOM = targetPosition;
+        }
+
+
+        setPosition(targetPosition);
     }
     public void setDown()
     {
+        currentState = State.BOTTOM;
         setPosition(BOTTOM);
     }
 
     public void setUP()
     {
+        currentState = State.TOP;
         setPosition(TOP);
     }
 
     public void reset()
     {
+        currentState = State.RESET;
         setPosition(RESET);
     }
 
     public void setPosition(int pos)
     {
-        hockeyStick.setTargetPosition(pos);
-        hockeyStick.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        hockeyStick.setPower(0.7);
+        targetPosition = pos;
+        hockeyStick.setTargetPosition(targetPosition);
+//        hockeyStick.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//        hockeyStick.setPower(0.7);
     }
 
     //Change this method to be in a certain range
@@ -85,7 +102,9 @@ public class HockeyStick
 
     public String toString()
     {
-        return "STICK POS: " + getPosition() + "\nTOP VALUE: " + TOP
+        return "STICK POS: " + getPosition()
+                + "\n TARGET POS: " + targetPosition
+                + "\nTOP VALUE: " + TOP
                 + "\nBOTTOM VALUE: " + BOTTOM;
     }
 }

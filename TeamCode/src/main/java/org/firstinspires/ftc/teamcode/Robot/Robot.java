@@ -122,7 +122,7 @@ public class Robot {
         return "Claw Pos: " + claw.getPos()
                 + "\n" + automaticPivot.toString()
                 + "\nHorizontal Extendo Data: " + horizontalExtendo.toString()
-                + "\nHockey Stick Pos: " + hockeyStick.getPosition();
+                + "\nHockey Stick Pos: " + hockeyStick.toString();
     }
 
 
