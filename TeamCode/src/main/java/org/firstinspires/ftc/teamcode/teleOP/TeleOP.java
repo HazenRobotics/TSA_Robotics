@@ -78,13 +78,13 @@ public class TeleOP extends LinearOpMode {
                 robot.adjustArmOffset(-1);
             }
 
-            if(controller1.dpad_up.onPress()){
+            if(controller2.dpad_up.onPress()){
                 robot.setHockeyStickUp();
             }
-            if(controller1.dpad_down.onPress()){
+            if(controller2.dpad_down.onPress()){
                 robot.setHockeyStickDown();
             }
-            if(controller1.dpad_right.onPress()){
+            if(controller2.dpad_right.onPress()){
                 robot.setHockeyStickReset();
             }
 
@@ -103,19 +103,19 @@ public class TeleOP extends LinearOpMode {
             }
 
 
-            if(controller2.dpad_up.getValue())
+            if(controller1.dpad_up.getValue())
             {
                 robot.adjustPivotOffset(5);
             }
-            if(controller2.dpad_down.getValue())
+            if(controller1.dpad_down.getValue())
             {
                 robot.adjustPivotOffset(-5);
             }
 
-            if(controller2.dpad_left.getValue()){
+            if(controller1.dpad_left.getValue()){
                 robot.adjustClawOffset(1);
             }
-            if(controller2.dpad_right.getValue()){
+            if(controller1.dpad_right.getValue()){
                 robot.adjustClawOffset(-1);
             }
 

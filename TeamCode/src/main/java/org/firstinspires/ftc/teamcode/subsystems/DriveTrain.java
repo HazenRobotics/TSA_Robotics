@@ -22,6 +22,7 @@ public class DriveTrain {
 
     public void drive(double forward, double strafe, double rotate)
     {
+        rotate *= 0.5;
         frontLeft.setPower(forward + strafe + rotate);
         backLeft.setPower(forward - strafe + rotate);
         frontRight.setPower(forward - strafe - rotate);

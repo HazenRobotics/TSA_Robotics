@@ -11,7 +11,7 @@ public class HockeyStick
     private int TOP = 900;
     private int BOTTOM = 1050;
     private int RESET = 0;
-    private int multipler = 25;
+    private int multipler = 5;
 
     public int targetPosition = 0;
 
