@@ -31,7 +31,7 @@ public class HockeyStick
         hockeyStick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         hockeyStick.setTargetPosition(hockeyStick.getCurrentPosition());
         hockeyStick.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        hockeyStick.setPower(0.7);
+        hockeyStick.setPower(1);
 
         currentState = State.RESET;
     }

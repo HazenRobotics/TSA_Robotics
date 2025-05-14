@@ -9,8 +9,8 @@ public class Wrist {
 
     Servo wrist;
     private double position;
-    private double SPEED_MULI = 0.001;
-    private double MAX = 0.7;
+    private double SPEED_MULI = 0.005;
+    private double MAX = 1;
     private double MIN = 0;
 
     public static double PARALLEL = 0.2;
@@ -40,7 +40,7 @@ public class Wrist {
     }
 
     public void setPosition(double pos){
-        position = pos;
+        position = Math.max(Math.min(pos, MAX), MIN);
         wrist.setPosition(position);
     }
     public void initPos(){

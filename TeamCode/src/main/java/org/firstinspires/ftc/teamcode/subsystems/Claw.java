@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import android.annotation.SuppressLint;
+
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Claw {
     private Servo claw;
     private double open = 0.222;
-    private double close = 0.568;
+    private double close = 0.52;
     private double ring = 0.418;
     private double position;
     /**
@@ -53,5 +55,11 @@ public class Claw {
     {
         position += increment*0.005;
         claw.setPosition(position);
+    }
+
+    @SuppressLint("DefaultLocale")
+    public String toString(){
+        return String.format("Position: %.2f",
+                position);
     }
 }
