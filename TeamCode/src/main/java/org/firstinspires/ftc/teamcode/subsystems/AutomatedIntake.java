@@ -65,15 +65,19 @@ public class AutomatedIntake {
 
     public void horizontalChange(double change){
         //Math for Horizontal Change
-        changeCheck(change * 0.1,0,0);
+        changeCheck(change * 0.25,0,0);
     }
     public void verticalChange(double change){
         //Math for vertical change
-        changeCheck(0, change * 0.1, 0);
+        changeCheck(0, change * 0.25, 0);
     }
 
     public void angleChange(double change){
-        changeCheck(0,0,change * 0.01);
+        changeCheck(0,0,change * 0.025);
+    }
+
+    public void setAngle(double a){
+        angle = a;
     }
 
     public void update(){

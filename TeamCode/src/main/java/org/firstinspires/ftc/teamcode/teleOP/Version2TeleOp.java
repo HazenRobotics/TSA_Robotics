@@ -29,7 +29,7 @@ public class Version2TeleOp extends LinearOpMode {
 
         while(opModeIsActive()){
 
-            robot.drive(gamepad1.left_stick_y,gamepad1.left_stick_x, gamepad1.right_stick_x);
+            robot.drive(-gamepad1.left_stick_y,gamepad1.left_stick_x, gamepad1.right_stick_x);
 
             if(controller1.a.onPress()) {
                 claw.toggle();
@@ -87,6 +87,13 @@ public class Version2TeleOp extends LinearOpMode {
             {
                 rightHockeyStick.adjustPos(-1);
                 leftHockeyStick.adjustPos(1);
+            }
+
+            if (controller1.left_stick_button.onPress()){
+                intake.setAngle(Math.toRadians(180));
+            }
+            if (controller1.right_stick_button.onPress()){
+                intake.setAngle(Math.toRadians(270));
             }
 
             intake.update();

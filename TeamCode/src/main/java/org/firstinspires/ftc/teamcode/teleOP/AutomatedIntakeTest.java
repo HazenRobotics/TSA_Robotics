@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 @TeleOp(name="AutomatedIntakeTest")
 public class AutomatedIntakeTest extends LinearOpMode {
 
+
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());

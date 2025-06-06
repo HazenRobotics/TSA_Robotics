@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Claw {
     private Servo claw;
-    private double open = 0.222;
-    private double close = 0.52;
+    private double open = 0.1;
+    private double close = 0.35;
     private double ring = 0.418;
     private double position;
     /**
@@ -39,6 +39,7 @@ public class Claw {
     public void toggle()
     {
          position = (position == open) ? close: open;
+         claw.setPosition(position);
     }
 
     public double getPos()
@@ -54,6 +55,7 @@ public class Claw {
     public void adjustPosition(double increment)
     {
         position += increment*0.005;
+        position = Math.max(Math.min(position, close+0.05), open-0.05);
         claw.setPosition(position);
     }
 
