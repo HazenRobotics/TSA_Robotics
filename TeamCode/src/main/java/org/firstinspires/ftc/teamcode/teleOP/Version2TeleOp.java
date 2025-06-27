@@ -18,8 +18,8 @@ public class Version2TeleOp extends LinearOpMode {
         AutomatedIntake intake = new AutomatedIntake(hardwareMap);
         Claw claw = new Claw(hardwareMap, "Claw");
         HockeyStick rightHockeyStick= new HockeyStick(hardwareMap, "rightHockeyStick");
-        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "LeftHockeyStick");
-
+        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
+        leftHockeyStick.reverseDirection();
         GamepadEvents controller1 = new GamepadEvents(gamepad1);
 
         waitForStart();
@@ -80,13 +80,13 @@ public class Version2TeleOp extends LinearOpMode {
 
             if(controller1.left_bumper.getValue())
             {
-                rightHockeyStick.adjustPos(1);
-                leftHockeyStick.adjustPos(-1);
+                rightHockeyStick.reset();
+                leftHockeyStick.reset();
             }
             if(controller1.right_bumper.getValue())
             {
-                rightHockeyStick.adjustPos(-1);
-                leftHockeyStick.adjustPos(1);
+                rightHockeyStick.toggle();
+                leftHockeyStick.toggle();
             }
 
             if (controller1.left_stick_button.onPress()){

@@ -16,10 +16,9 @@ public class HockeyStickTest extends LinearOpMode {
         controller1 = new GamepadEvents(gamepad1);
         controller2 = new GamepadEvents(gamepad2);
         hockeyStick = new HockeyStick(hardwareMap, "rightHockeyStick");
-        leftHockeyStick = new HockeyStick(hardwareMap, "LeftHockeyStick");
+        leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
         driveTrain = new DriveTrain(hardwareMap,"frontLeft", "backLeft", "frontRight",
                 "backRight");
-
         waitForStart();
 
 

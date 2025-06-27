@@ -16,7 +16,7 @@ public class ResetExtendo extends LinearOpMode {
         telemetry.addLine("Hit Start to reset extendo.");
         telemetry.addLine(extendo.toString());
         HockeyStick rightHockeyStick= new HockeyStick(hardwareMap, "rightHockeyStick");
-        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "LeftHockeyStick");
+        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
         telemetry.addLine("Resets Hockey Sticks as well to sync");
         telemetry.update();
         waitForStart();

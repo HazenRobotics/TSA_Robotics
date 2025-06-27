@@ -24,7 +24,7 @@ public class Arm {
     public void setPosition(double pos){
 //        double liftPosition = 0.5;
         position = pos;
-        backArm.setPosition( position);
+        backArm.setPosition(position);
         frontArm.setPosition(position);
     }
     public double getFrontArm(){

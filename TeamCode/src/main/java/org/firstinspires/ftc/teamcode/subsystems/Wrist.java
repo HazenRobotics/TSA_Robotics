@@ -43,13 +43,13 @@ public class Wrist {
         position = Math.max(Math.min(pos, MAX), MIN);
         wrist.setPosition(position);
     }
-    public void initPos(){
-        position = 0.7;
-        wrist.setPosition(0.7);
-    }
-    public void initPos(){
-        wrist.setPosition(0.5);
-    }
+//    public void initPos(){
+//        position = 0.7;
+//        wrist.setPosition(0.7);
+//    }
+//    public void initPos(){
+//        wrist.setPosition(0.5);
+//    }
     public void initPos(){
         wrist.setPosition(0.5);
     }
