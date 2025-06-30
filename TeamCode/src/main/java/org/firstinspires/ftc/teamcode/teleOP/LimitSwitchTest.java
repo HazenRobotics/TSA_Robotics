@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
-@TeleOp(name = "Limit Switch Test")
+//@TeleOp(name = "Limit Switch Test")
 public class LimitSwitchTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

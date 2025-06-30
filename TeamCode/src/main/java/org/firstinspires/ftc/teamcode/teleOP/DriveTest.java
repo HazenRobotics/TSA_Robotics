@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subsystems.DriveTrain;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 
-@TeleOp(name = "Drive Test")
+//@TeleOp(name = "Drive Test")
 public class DriveTest extends LinearOpMode {
     GamepadEvents controller1;
     DriveTrain robot;

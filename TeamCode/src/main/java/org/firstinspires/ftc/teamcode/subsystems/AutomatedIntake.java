@@ -11,10 +11,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 public class AutomatedIntake {
 
 
-    //Arm 90 degrees = 1 - 0.24 = 0.76
+    //Arm 90 degrees = 1 - 0.4 = 0.6
     //Arm Parallel - 0.242
-    double ARM_PARALLEL = 0.242;
-    double DEGREES_TO_ARM_POS = 0.76/90;
+    double ARM_PARALLEL = 0.4;
+    double DEGREES_TO_ARM_POS = 0.6/90;
     Arm arm;
     //Wrist 90 degrees - 0.65 - 0.39 = 0.26
     //Parallel Wrist - 0.388
@@ -26,7 +26,7 @@ public class AutomatedIntake {
 
     double INCH_TO_TICKS = 985.0/12;
     HorizontalExtendo extendo;
-    IMU imu;
+
 
     //Target Data:
     boolean relativeTargetting = false;
@@ -36,7 +36,6 @@ public class AutomatedIntake {
     double clawLength = 4;
     double horizontal, vertical, angle;
 
-    double tempH, tempV, tempA;
 
     public AutomatedIntake(HardwareMap hw){
         //Initialize Extendo
@@ -46,13 +45,6 @@ public class AutomatedIntake {
         //Initialize Horizontal Extendo
         extendo = new HorizontalExtendo(hw, "leftExtendo", "rightExtendo");
         //Initialized IMU
-        imu = hw.get(IMU.class, "imu");
-        imu.initialize(new IMU.Parameters(
-                new RevHubOrientationOnRobot(
-                        RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
-                        RevHubOrientationOnRobot.UsbFacingDirection.UP
-                )
-        ));
     }
 
     public void init(){
@@ -172,34 +164,31 @@ public class AutomatedIntake {
         wrist.adjustPosition(change);
     }
 
+    public void resetExtendo(){
+        extendo.resetPos();
+    }
+
     public boolean getRelativeTargetting(){
         return relativeTargetting;
     }
 
     @SuppressLint("DefaultLocale")
     public String toString(){
-        return String.format("IMU pitch reading: %.2f\n" +
+        return String.format(
                         "Arm Position: %f\n" +
                         "Wrist Position: %f\n" +
                         "Extendo Position:%d\n" +
                         "Relative Targeting On: %b\n" +
                         "Horizontal: %.2f\n" +
                         "Vertical: %.2f\n" +
-                        "Angle (Deg): %.2f\n" +
-                        "\n\nHorizontal: %.2f\n" +
-                        "Vertical: %.2f\n" +
                         "Angle (Deg): %.2f\n",
-                imu.getRobotYawPitchRollAngles().getPitch(AngleUnit.DEGREES),
                 arm.getPosition(),
                 wrist.getPosition(),
                 extendo.getPos(),
                 relativeTargetting,
                 horizontal,
                 vertical,
-                Math.toDegrees(angle),
-                tempH,
-                tempV,
-                Math.toDegrees(tempA));
+                Math.toDegrees(angle));
     }
 
 

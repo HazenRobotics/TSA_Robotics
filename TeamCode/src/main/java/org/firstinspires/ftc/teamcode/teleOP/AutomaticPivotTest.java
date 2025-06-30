@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.subsystems.AutomaticPivot;
 import org.firstinspires.ftc.teamcode.subsystems.DriveTrain;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 
-@TeleOp(name="Automatic Pivot Test")
+//@TeleOp(name="Automatic Pivot Test")
 public class AutomaticPivotTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

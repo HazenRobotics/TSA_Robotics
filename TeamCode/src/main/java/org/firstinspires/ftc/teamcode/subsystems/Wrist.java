@@ -9,7 +9,7 @@ public class Wrist {
 
     Servo wrist;
     private double position;
-    private double SPEED_MULI = 0.005;
+    private double SPEED_MULI = 0.01;
     private double MAX = 1;
     private double MIN = 0;
 

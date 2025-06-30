@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.teleOP;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.subsystems.HockeyStick;
 import org.firstinspires.ftc.teamcode.subsystems.HorizontalExtendo;
@@ -15,8 +17,8 @@ public class ResetExtendo extends LinearOpMode {
         HorizontalExtendo extendo = new HorizontalExtendo(hardwareMap,"leftExtendo", "rightExtendo");
         telemetry.addLine("Hit Start to reset extendo.");
         telemetry.addLine(extendo.toString());
-        HockeyStick rightHockeyStick= new HockeyStick(hardwareMap, "rightHockeyStick");
-        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
+        DcMotor rightStick= hardwareMap.get(DcMotor.class, "rightHockeyStick");
+        DcMotor leftStick =  hardwareMap.get(DcMotor.class, "leftHockeyStick");
         telemetry.addLine("Resets Hockey Sticks as well to sync");
         telemetry.update();
         waitForStart();
@@ -25,8 +27,8 @@ public class ResetExtendo extends LinearOpMode {
         while(opModeIsActive() && move){
 
             extendo.movePos(gamepad1.left_trigger - gamepad1.right_trigger);
-            rightHockeyStick.reset();
-            leftHockeyStick.reset();
+            rightStick.setPower(gamepad1.left_stick_y);
+            leftStick.setPower(-gamepad1.right_stick_y);
             if(gamepad1.a){
                 move = false;
             }
@@ -37,6 +39,8 @@ public class ResetExtendo extends LinearOpMode {
         }
 
         extendo.resetPos();
+        rightStick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftStick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         for (int i=5; i>0; i--){
             telemetry.addLine("Reset Complete");
             telemetry.addData("Ending Telemetry in: ", i);

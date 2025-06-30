@@ -27,6 +27,7 @@ android {
 }
 
 repositories {
+    mavenCentral()
     maven{
         url = 'https://maven.brott.dev/'
     }
@@ -36,4 +37,5 @@ repositories {
 dependencies {
     implementation project(':FtcRobotController')
     implementation "com.acmerobotics.dashboard:dashboard:0.4.16"
+//    implementation 'com.microsoft.onnxruntime:onnxruntime-mobile:1.17.0'
 }

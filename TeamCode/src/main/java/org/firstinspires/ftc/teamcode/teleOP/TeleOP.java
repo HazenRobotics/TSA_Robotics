@@ -12,7 +12,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvWebcam;
 
-@TeleOp(name = "A GOATED TeleOP")
+//@TeleOp(name = "A GOATED TeleOP")
 public class TeleOP extends LinearOpMode {
     Robot robot;
     GamepadEvents controller1, controller2;
