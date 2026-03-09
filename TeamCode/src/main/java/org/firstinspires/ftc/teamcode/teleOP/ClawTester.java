@@ -9,9 +9,10 @@ import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 
 @TeleOp(name = "Claw Tester")
 public class ClawTester extends LinearOpMode {
+    Claw claw;
     @Override
     public void runOpMode() throws InterruptedException {
-        Claw claw = new Claw(hardwareMap,"Claw");
+        claw = new Claw(hardwareMap,"Claw");
         GamepadEvents controller = new GamepadEvents(gamepad1);
 
         waitForStart();
@@ -31,11 +32,13 @@ public class ClawTester extends LinearOpMode {
 //            {
 //                claw.ringClose();
 //            }
-            claw.adjustPosition(controller.left_stick_y);
 
-            telemetry.addData("Expected Claw Pos", claw.getPos());
-            telemetry.addLine("Resetting to Zero");
-            telemetry.addLine("PRESS[B] to open claw");
+
+            claw.setPosition(controller.left_stick_y);
+
+            telemetry.addData("Claw Pos", claw.getPos());
+//            telemetry.addLine("Resetting to Zero");
+//            telemetry.addLine("PRESS[B] to open claw");
             telemetry.update();
             controller.update();
         }

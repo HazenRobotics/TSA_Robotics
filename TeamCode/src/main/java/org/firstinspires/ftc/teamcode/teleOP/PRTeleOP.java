@@ -11,18 +11,18 @@ import org.firstinspires.ftc.teamcode.subsystems.HockeyStick;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 import org.firstinspires.ftc.teamcode.utils.IndicatorLight;
 
-@TeleOp(name="Version 2 TeleOp")
-public class Version2TeleOp extends LinearOpMode {
+@TeleOp(name="PRTeleOP")
+public class PRTeleOP extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         DriveTrain robot = new DriveTrain(hardwareMap,"frontLeft", "backLeft", "frontRight",
                 "backRight");
         AutomatedIntake intake = new AutomatedIntake(hardwareMap);
-        Claw claw = new Claw(hardwareMap, "claw");
-        HockeyStick rightHockeyStick= new HockeyStick(hardwareMap, "rightHockeyStick");
-        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
+        Claw claw = new Claw(hardwareMap, "Claw");
+//        HockeyStick rightHockeyStick= new HockeyStick(hardwareMap, "rightHockeyStick");
+//        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
         IndicatorLight light = new IndicatorLight(hardwareMap, "light");
-        rightHockeyStick.reverseDirection();
+//        rightHockeyStick.reverseDirection();
 
         long lightClock = System.currentTimeMillis();
 
@@ -36,9 +36,9 @@ public class Version2TeleOp extends LinearOpMode {
 
         while(opModeIsActive()){
 
-            robot.drive(-gamepad1.left_stick_y - gamepad2.left_stick_y,gamepad1.left_stick_x + gamepad2.left_stick_x, gamepad1.right_stick_x + gamepad2.right_stick_x);
+            robot.drive(gamepad1.left_stick_y + gamepad2.left_stick_y,gamepad1.left_stick_x - gamepad2.left_stick_x, -gamepad1.right_stick_x + gamepad2.right_stick_x);
 
-//I'm a ching ching gululu booboowaawaa
+
             if(controller1.a.onPress()) {
                 claw.toggle();
             }
@@ -92,16 +92,16 @@ public class Version2TeleOp extends LinearOpMode {
                 }
             }
 
-            if(controller1.left_bumper.onPress() || controller2.left_bumper.onPress())
-            {
-                rightHockeyStick.reset();
-                leftHockeyStick.reset();
-            }
-            if(controller1.right_bumper.onPress() || controller2.left_bumper.onPress())
-            {
-                rightHockeyStick.toggle();
-                leftHockeyStick.toggle();
-            }
+//            if(controller1.left_bumper.onPress() || controller2.left_bumper.onPress())
+//            {
+//                rightHockeyStick.reset();
+//                leftHockeyStick.reset();
+//            }
+//            if(controller1.right_bumper.onPress() || controller2.left_bumper.onPress())
+//            {
+//                rightHockeyStick.toggle();
+//                leftHockeyStick.toggle();
+//            }
 
 
             if (controller1.left_stick_button.onPress()){
@@ -117,14 +117,14 @@ public class Version2TeleOp extends LinearOpMode {
                 light.setColor(0);
             }
 
-            if (controller2.dpad_down.getValue()){
-                leftHockeyStick.adjustPos(1);
-                rightHockeyStick.adjustPos(1);
-            }
-            if (controller2.dpad_up.getValue()){
-                leftHockeyStick.adjustPos(-1);
-                rightHockeyStick.adjustPos(-1);
-            }
+//            if (controller2.dpad_down.getValue()){
+//                leftHockeyStick.adjustPos(1);
+//                rightHockeyStick.adjustPos(1);
+//            }
+//            if (controller2.dpad_up.getValue()){
+//                leftHockeyStick.adjustPos(-1);
+//                rightHockeyStick.adjustPos(-1);
+//            }
 
             if(gamepad2.left_trigger > 0.9 && gamepad2.right_trigger > 0.9){
                 intake.resetExtendo();
@@ -135,8 +135,8 @@ public class Version2TeleOp extends LinearOpMode {
 
             telemetry.addLine(intake.toString());
             telemetry.addLine(claw.toString());
-            telemetry.addLine(rightHockeyStick.toString());
-            telemetry.addLine(leftHockeyStick.toString());
+//            telemetry.addLine(rightHockeyStick.toString());
+//            telemetry.addLine(leftHockeyStick.toString());
             controller1.update();
             controller2.update();
             telemetry.update();

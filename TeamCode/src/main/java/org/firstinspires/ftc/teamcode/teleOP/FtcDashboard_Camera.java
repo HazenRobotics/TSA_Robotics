@@ -30,7 +30,6 @@ import java.util.concurrent.atomic.AtomicReference;
 @Config
 @Autonomous(name="FtcDashboard Camera", group="Linear")
 public class FtcDashboard_Camera extends LinearOpMode {
-
     public static Rect perpendicular = new Rect(200,100,450,250);
     public static Rect parallel = new Rect(240,400,420,470);
     //Talk Volatile vs AtomicReference, final to make sure it is only initialized once, etc.
