@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Claw {
     private Servo claw;
-    private double open = 0.1;
-    private double close = 0.35;
-    private double ring = 0.418;
+    private double open = 0.1; //default 0.1
+    private double close = 0.35; //default 0.35
+    private double ring = 0.418; //default: 0.418
     private double position;
     /**
         @param: (String) name of the claw
@@ -17,6 +17,7 @@ public class Claw {
     public Claw(HardwareMap hardwareMap,String clawName)
     {
         claw = hardwareMap.get(Servo.class, clawName);
+        claw.setDirection(Servo.Direction.REVERSE);
     }
 
     public void open()
