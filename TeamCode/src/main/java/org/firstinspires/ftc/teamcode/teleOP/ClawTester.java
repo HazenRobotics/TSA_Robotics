@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystems.Claw;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
-
-@TeleOp(name = "Claw Tester")
+@TeleOp(name="Claw Test")
+//@TeleOp(name = "Mr. Nguyen")
 public class ClawTester extends LinearOpMode {
     Claw claw;
     @Override
@@ -36,6 +36,7 @@ public class ClawTester extends LinearOpMode {
 
             claw.setPosition(controller.left_stick_y);
 
+            telemetry.addLine("Claw Tester");
             telemetry.addData("Claw Pos", claw.getPos());
 //            telemetry.addLine("Resetting to Zero");
 //            telemetry.addLine("PRESS[B] to open claw");

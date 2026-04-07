@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.teamcode.subsystems.HockeyStick;
 import org.firstinspires.ftc.teamcode.subsystems.HorizontalExtendo;
 
-
 @TeleOp(name = "Reset Extendo")
+//@TeleOp(name = "Maleng Regional Justice Center")
 public class ResetExtendo extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

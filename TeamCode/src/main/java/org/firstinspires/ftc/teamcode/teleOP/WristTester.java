@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystems.Wrist;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
-
-@TeleOp(name = "Wrist Tester")
+@TeleOp(name="Wrist Tester")
+//@TeleOp(name = "The Nguyen Files")
 public class WristTester extends LinearOpMode {
     GamepadEvents controller1;
     Wrist wrist;
@@ -42,6 +42,7 @@ public class WristTester extends LinearOpMode {
 
 
 //            telemetry.addLine("Press [A] to set Parallel");
+            telemetry.addLine("Wrist Tester");
             telemetry.addLine("Press [B] to set as parallel");
 //            telemetry.addLine("Press [X] to set as 1");
             telemetry.addLine("use [Left Joy Stick Y] to adjust positions");
