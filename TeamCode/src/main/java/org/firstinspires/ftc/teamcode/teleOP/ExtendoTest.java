@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.HorizontalExtendo;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
-
 @TeleOp(name = "Extendo Test")
+//@TeleOp(name = "Avoid the CC")
 public class ExtendoTest extends LinearOpMode {
     GamepadEvents controller1;
     HorizontalExtendo extendo;
@@ -20,6 +20,7 @@ public class ExtendoTest extends LinearOpMode {
         {
             double pos = controller1.left_trigger.getTriggerValue() - controller1.right_trigger.getTriggerValue();
             extendo.movePos(pos);
+            telemetry.addLine("Extendo Test");
             telemetry.addData("Exendo Pos", pos);
             controller1.update();
         }

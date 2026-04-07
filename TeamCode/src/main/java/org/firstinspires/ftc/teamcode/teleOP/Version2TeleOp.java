@@ -10,8 +10,9 @@ import org.firstinspires.ftc.teamcode.subsystems.DriveTrain;
 import org.firstinspires.ftc.teamcode.subsystems.HockeyStick;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 import org.firstinspires.ftc.teamcode.utils.IndicatorLight;
+@TeleOp(group = "1", name="TSA TeleOP(CLICK THIS ONE🤖🤖🤖💪💪💪🦍🦍🦍🇹🇼🇹🇼🇹🇼🇹🇼🇹🇼>🇨🇳🇨🇳🇨🇳🇨🇳🇨🇳")
+//@TeleOp(name="Quan Duc Nguyen")
 
-@TeleOp(name="Version 2 TeleOp")
 public class Version2TeleOp extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
@@ -20,9 +21,9 @@ public class Version2TeleOp extends LinearOpMode {
         AutomatedIntake intake = new AutomatedIntake(hardwareMap);
         Claw claw = new Claw(hardwareMap, "claw");
         HockeyStick rightHockeyStick= new HockeyStick(hardwareMap, "rightHockeyStick");
-        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
-        IndicatorLight light = new IndicatorLight(hardwareMap, "light");
-        rightHockeyStick.reverseDirection();
+        HockeyStick leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick", true);
+//        IndicatorLight light = new IndicatorLight(hardwareMap, "light");
+//        rightHockeyStick.reverseDirection();
 
         long lightClock = System.currentTimeMillis();
 
@@ -36,7 +37,7 @@ public class Version2TeleOp extends LinearOpMode {
 
         while(opModeIsActive()){
 
-            robot.drive(-gamepad1.left_stick_y - gamepad2.left_stick_y,gamepad1.left_stick_x + gamepad2.left_stick_x, gamepad1.right_stick_x + gamepad2.right_stick_x);
+            robot.drive(gamepad1.left_stick_y + gamepad2.left_stick_y,-gamepad1.left_stick_x - gamepad2.left_stick_x, gamepad1.right_stick_x + gamepad2.right_stick_x);
 
 //I'm a ching ching gululu booboowaawaa
             if(controller1.a.onPress()) {
@@ -53,11 +54,11 @@ public class Version2TeleOp extends LinearOpMode {
 
             if(controller1.x.onPress()){
                 intake.toggleTargetting();
-                if (intake.getRelativeTargetting()) {
-                    light.setColor(IndicatorLight.GREEN_WEIGHT);
-                }else{
-                    light.setColor(IndicatorLight.BLUE_WEIGHT);
-                }
+//                if (intake.getRelativeTargetting()) {
+//                    light.setColor(IndicatorLight.GREEN_WEIGHT);
+//                }else{
+//                    light.setColor(IndicatorLight.BLUE_WEIGHT);
+//                }
                 lightClock = System.currentTimeMillis() + 1000;
             }
             if (intake.getRelativeTargetting()){
@@ -113,9 +114,9 @@ public class Version2TeleOp extends LinearOpMode {
 
             intake.update();
 
-            if (lightClock < System.currentTimeMillis()){
-                light.setColor(0);
-            }
+//            if (lightClock < System.currentTimeMillis()){
+//                light.setColor(0);
+//            }
 
             if (controller2.dpad_down.getValue()){
                 leftHockeyStick.adjustPos(1);
@@ -128,10 +129,9 @@ public class Version2TeleOp extends LinearOpMode {
 
             if(gamepad2.left_trigger > 0.9 && gamepad2.right_trigger > 0.9){
                 intake.resetExtendo();
-                light.setColor(IndicatorLight.YELLOW_WEIGHT);
+//                light.setColor(IndicatorLight.YELLOW_WEIGHT);
                 lightClock = System.currentTimeMillis() + 1000;
             }
-
 
             telemetry.addLine(intake.toString());
             telemetry.addLine(claw.toString());

@@ -6,7 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subsystems.DriveTrain;
 import org.firstinspires.ftc.teamcode.subsystems.HockeyStick;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
-@TeleOp(name = "A HockeyStick test")
+@TeleOp(name="Hockey Stick Test")
+//@TeleOp(name = "Quan 'Pervert' Nguyen")
 public class HockeyStickTest extends LinearOpMode {
     GamepadEvents controller1, controller2;
     HockeyStick hockeyStick, leftHockeyStick;
@@ -16,7 +17,7 @@ public class HockeyStickTest extends LinearOpMode {
         controller1 = new GamepadEvents(gamepad1);
         controller2 = new GamepadEvents(gamepad2);
         hockeyStick = new HockeyStick(hardwareMap, "rightHockeyStick");
-        leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick");
+        leftHockeyStick = new HockeyStick(hardwareMap, "leftHockeyStick", true);
         driveTrain = new DriveTrain(hardwareMap,"frontLeft", "backLeft", "frontRight",
                 "backRight");
         waitForStart();
@@ -24,17 +25,20 @@ public class HockeyStickTest extends LinearOpMode {
 
 
         while (opModeIsActive()) {
-            driveTrain.cubedDrive(-controller1.left_stick_y, controller1.left_stick_x, controller1.right_stick_x);
+//            driveTrain.cubedDrive(-controller1.left_stick_y, controller1.left_stick_x, controller1.right_stick_x);
             //UP Pos:750
             //Down Pos: 1000
             if (controller1.left_bumper.onPress())
             {
                 hockeyStick.toggle();
+                leftHockeyStick.toggle();
+
             }
 
             if(controller1.right_bumper.onPress())
             {
                 hockeyStick.reset();
+                leftHockeyStick.reset();
             }
 
             if(controller2.dpad_up.getValue())
@@ -56,6 +60,7 @@ public class HockeyStickTest extends LinearOpMode {
 
 //            telemetry.addLine("Press[Left_Bumper] to set UP Pos");
 //            telemetry.addLine("Press[Right_Bumper] to set DOWN Pos");
+            telemetry.addLine("HockeyStick Test");
             telemetry.addLine("Press[Left Bumper] to set Toggle Pos");
             telemetry.addLine("press [DPAD UP & DPAD DOWN] to adjust set Posiitons");
             telemetry.addLine(hockeyStick.toString());

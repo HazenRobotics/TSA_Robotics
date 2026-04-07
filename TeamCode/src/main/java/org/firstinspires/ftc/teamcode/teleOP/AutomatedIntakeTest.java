@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.subsystems.AutomatedIntake;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
-
-@TeleOp(name="AutomatedIntakeTest")
+@TeleOp(name="Automated Intake Test")
+//@TeleOp(name="Quan 'Diddy' Nguyen")
 public class AutomatedIntakeTest extends LinearOpMode {
 
 
@@ -40,6 +40,7 @@ public class AutomatedIntakeTest extends LinearOpMode {
             }
 
             intake.update();
+            telemetry.addLine("AutomatedIntakeTest");
             telemetry.addLine(intake.toString());
             telemetry.update();
             controller1.update();

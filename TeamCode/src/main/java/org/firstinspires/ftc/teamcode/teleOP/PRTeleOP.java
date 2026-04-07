@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.subsystems.HockeyStick;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
 import org.firstinspires.ftc.teamcode.utils.IndicatorLight;
 
-@TeleOp(name="PRTeleOP")
+//@TeleOp(name="PRTeleOP")
 public class PRTeleOP extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

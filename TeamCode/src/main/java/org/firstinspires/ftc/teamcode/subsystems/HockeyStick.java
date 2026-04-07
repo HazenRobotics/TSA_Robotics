@@ -41,6 +41,21 @@ public class HockeyStick
 
         currentState = State.RESET;
     }
+
+    public HockeyStick(HardwareMap hardwareMap, String motorName, boolean isReversed)
+    {
+        hockeyStick = hardwareMap.get(DcMotorEx.class, motorName);
+        hockeyStick.setDirection(DcMotorSimple.Direction.FORWARD);
+
+//        hockeyStick.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        hockeyStick.setTargetPosition(hockeyStick.getCurrentPosition());
+        hockeyStick.setTargetPosition(RESET);
+        hockeyStick.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        timer = new ElapsedTime();
+        hockeyStick.setPower(0.1);
+
+        currentState = State.RESET;
+    }
 //    public void moveToPosition(int targetPosition, double tolerance) {
 //        final double kP = 0.01;
 //        final double kD = 0.001;

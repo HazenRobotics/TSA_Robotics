@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.subsystems.Arm;
 import org.firstinspires.ftc.teamcode.subsystems.Wrist;
 import org.firstinspires.ftc.teamcode.utils.GamepadEvents;
-
 @TeleOp(name = "Arm Test")
+//@TeleOp(name = "Quagmire Duc Nguyen")
 public class ArmTest extends LinearOpMode {
     GamepadEvents controller1;
     Arm arm;
@@ -41,6 +41,7 @@ public class ArmTest extends LinearOpMode {
 
             arm.adjustPosition(controller1.left_stick_y);
             wrist.adjustPosition(controller1.right_stick_y);
+            telemetry.addLine("Arm Test");
             telemetry.addLine(arm.toString());
             telemetry.addLine(wrist.toString());
             telemetry.update();
