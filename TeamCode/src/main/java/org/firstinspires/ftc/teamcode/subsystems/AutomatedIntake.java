@@ -44,6 +44,7 @@ public class AutomatedIntake {
         wrist = new Wrist(hw, "wrist");
         //Initialize Horizontal Extendo
         extendo = new HorizontalExtendo(hw, "leftExtendo", "rightExtendo");
+
         //Initialized IMU
     }
 

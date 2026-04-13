@@ -31,13 +31,13 @@ public class Version2TeleOp extends LinearOpMode {
         GamepadEvents controller2 = new GamepadEvents(gamepad2);
 
         waitForStart();
-
         intake.init();
+        intake.toggleTargetting();
 
 
         while(opModeIsActive()){
 
-            robot.drive(gamepad1.left_stick_y + gamepad2.left_stick_y,-gamepad1.left_stick_x - gamepad2.left_stick_x, gamepad1.right_stick_x + gamepad2.right_stick_x);
+            robot.drive(gamepad1.left_stick_y + gamepad2.left_stick_y,-gamepad1.left_stick_x - gamepad2.left_stick_x, -gamepad1.right_stick_x - gamepad2.right_stick_x);
 
 //I'm a ching ching gululu booboowaawaa
             if(controller1.a.onPress()) {
@@ -61,7 +61,8 @@ public class Version2TeleOp extends LinearOpMode {
 //                }
                 lightClock = System.currentTimeMillis() + 1000;
             }
-            if (intake.getRelativeTargetting()){
+            if (intake.getRelativeTargetting())
+            {
                 intake.horizontalChange(controller1.right_trigger.getTriggerValue() - controller1.left_trigger.getTriggerValue());
                 if (gamepad1.dpad_up){
                     intake.verticalChange(1);
