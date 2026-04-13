@@ -24,6 +24,7 @@ public class HorizontalExtendo {
 
 
         leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 //        resetPos();
 
         leftMotor.setTargetPosition(getPos());
@@ -64,7 +65,6 @@ public class HorizontalExtendo {
     {
         leftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
         leftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }

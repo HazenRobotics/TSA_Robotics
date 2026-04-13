@@ -12,13 +12,12 @@ public class Arm {
     private double SPEED_MULI = 0.01;
     private double MAX = 1;
     private double MIN = 0;
-
     public static double PARALLEL = 0.5;
     public Arm(HardwareMap hardwareMap, String frontArmName, String backArmName)
     {
         backArm = hardwareMap.get(Servo.class, backArmName);
         frontArm = hardwareMap.get(Servo.class, frontArmName);
-        frontArm.setDirection(Servo.Direction.REVERSE);
+        frontArm.setDirection(Servo.Direction.FORWARD);
         backArm.setDirection(Servo.Direction.REVERSE);
 
     }
