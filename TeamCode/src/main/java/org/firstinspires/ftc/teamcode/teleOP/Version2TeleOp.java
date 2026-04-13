@@ -51,7 +51,6 @@ public class Version2TeleOp extends LinearOpMode {
             else if(gamepad1.b){
                 claw.adjustPosition(1);
             }
-
             if(controller1.x.onPress()){
                 intake.toggleTargetting();
 //                if (intake.getRelativeTargetting()) {
