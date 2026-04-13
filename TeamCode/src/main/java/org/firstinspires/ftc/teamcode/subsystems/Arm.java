@@ -12,7 +12,6 @@ public class Arm {
     private double SPEED_MULI = 0.01;
     private double MAX = 1;
     private double MIN = 0;
-
     public static double PARALLEL = 0.5;
     public Arm(HardwareMap hardwareMap, String frontArmName, String backArmName)
     {
